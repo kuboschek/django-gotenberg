@@ -1,6 +1,4 @@
-Handle HTTP errors from PDF service
 Refactor render method
 Add basic tests
-Add settings for PDF render service host
 Package as python Package
 Set up CI
