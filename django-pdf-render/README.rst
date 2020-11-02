@@ -1,6 +1,6 @@
-=====
+=================
 Django PDF Render
-=====
+=================
 
 PDF Render is a Django app that provides functions to
 render PDF files from Django templates.
