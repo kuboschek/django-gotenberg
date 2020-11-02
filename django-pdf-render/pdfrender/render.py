@@ -36,7 +36,7 @@ def _resolve_absolute(path):
         return absolute_path
     else:
         return storage.path(path)
-
+        
 def _to_bytes(template_name, context={}):
     t = loader.get_template(template_name)
 
