@@ -44,7 +44,7 @@ def _to_bytes(template_name, context={}):
 
     new_nodes = NodeList()
 
-    for node in t.template:
+    for node in t.template.nodelist:
         if node.__class__ == StaticNode:
             orig_path = node.path.resolve(context)
             flat_path = _flatten(orig_path)
