@@ -19,7 +19,7 @@ _PATH_SEP_REPLACER = "-"
 
 def _flatten(path):
     """Replace path separators so the filename is safe to use as a Gotenberg resource name."""
-    return path.replace("/", _PATH_SEP_REPLACER)
+    return _PATH_SEP_REPLACER.join(Path(path).parts)
 
 
 def _resolve_absolute(path):
