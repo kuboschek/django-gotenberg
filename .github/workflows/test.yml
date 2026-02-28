@@ -1,0 +1,50 @@
+# Tests the public interface of django-gotenberg against the current versions
+# of Django and Gotenberg, triggered on merging pull requests.
+
+name: Test
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+
+    services:
+      gotenberg:
+        image: gotenberg/gotenberg:8
+        ports:
+          - 3000:3000
+
+    strategy:
+      matrix:
+        python-version: ['3.10', '3.11', '3.12']
+        django-version: ['4.2', '5.0', '5.1']
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install "Django==${{ matrix.django-version }}.*" "gotenberg-client>=0.7.0" pytest
+          pip install -e django-gotenberg/
+
+      - name: Run tests
+        env:
+          GOTENBERG_HOST: http://localhost:3000
+          DJANGO_SETTINGS_MODULE: testbed.settings
+        run: python -m pytest tests/ -v

@@ -120,5 +120,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-
-PDF_RENDER_SERVER = 'http://localhost:3000'
+import os
+GOTENBERG_HOST = os.environ.get('GOTENBERG_HOST', 'http://localhost:3000')

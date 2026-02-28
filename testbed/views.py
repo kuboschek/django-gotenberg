@@ -1,4 +1,5 @@
-import pdfrender
+from django_gotenberg import render_to_pdf
+
 
 def example(request):
-    return pdfrender.render_to_response('test.html', {'title': 'It works!', 'subtitle': 'If you can read this, it works.'})
+    return render_to_pdf(request, 'test.html', {'title': 'It works!', 'subtitle': 'If you can read this, it works.'})
