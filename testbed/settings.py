@@ -119,3 +119,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+import os
+GOTENBERG_HOST = os.environ.get('GOTENBERG_HOST', 'http://localhost:3000')

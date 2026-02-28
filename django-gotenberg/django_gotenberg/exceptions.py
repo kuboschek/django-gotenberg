@@ -4,3 +4,7 @@ class RenderException(Exception):
 
 class GotenbergException(RenderException):
     pass
+
+
+class FileGatheringException(RenderException):
+    pass

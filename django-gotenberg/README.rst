@@ -5,6 +5,10 @@ Django Gotenberg
 Django Gotenberg is a Django app that provides a ``render_to_pdf`` function to
 render Django templates to PDF responses using a `Gotenberg <https://gotenberg.dev>`_ instance.
 
+Static files referenced via ``{% static %}`` tags in the template are resolved
+and sent to Gotenberg alongside the rendered HTML so that images, stylesheets,
+and other assets are embedded correctly in the generated PDF.
+
 Quick start
 -----------
 
@@ -12,9 +16,10 @@ Quick start
 
     docker run --rm -p 3000:3000 gotenberg/gotenberg:8
 
-2. Set the ``DJANGO_GOTENBERG_HOST`` environment variable::
 
-    export DJANGO_GOTENBERG_HOST=http://localhost:3000
+2. Add ``GOTENBERG_HOST`` to your Django settings::
+
+    GOTENBERG_HOST = 'http://localhost:3000'
 
 3. Use ``render_to_pdf`` in your views::
 
@@ -30,13 +35,13 @@ Quick start
 Configuration
 -------------
 
-All configuration is done via environment variables with the ``DJANGO_GOTENBERG_`` prefix:
+All configuration is done via Django settings:
 
-============================================ ========================================= =========================================
-Variable                                     Description                               Default
-============================================ ========================================= =========================================
-``DJANGO_GOTENBERG_HOST``                    URL of the Gotenberg instance (required)  —
-``DJANGO_GOTENBERG_TIMEOUT``                 Request timeout in seconds                ``30.0``
-``DJANGO_GOTENBERG_USERNAME``                HTTP basic auth username                  —
-``DJANGO_GOTENBERG_PASSWORD``                HTTP basic auth password                  —
-============================================ ========================================= =========================================
+============================== ========================================= ===========
+Setting                        Description                               Default
+============================== ========================================= ===========
+``GOTENBERG_HOST``             URL of the Gotenberg instance (required)  —
+``GOTENBERG_TIMEOUT``          Request timeout in seconds                ``30.0``
+``GOTENBERG_USERNAME``         HTTP basic auth username                  —
+``GOTENBERG_PASSWORD``         HTTP basic auth password                  —
+============================== ========================================= ===========

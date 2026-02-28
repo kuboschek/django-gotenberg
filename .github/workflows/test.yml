@@ -45,6 +45,6 @@ jobs:
 
       - name: Run tests
         env:
-          DJANGO_GOTENBERG_HOST: http://localhost:3000
+          GOTENBERG_HOST: http://localhost:3000
           DJANGO_SETTINGS_MODULE: testbed.settings
         run: python -m pytest tests/ -v
